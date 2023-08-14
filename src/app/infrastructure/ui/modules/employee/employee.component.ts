@@ -50,13 +50,13 @@ export class EmployeeComponent {
 
 
 
-  modifyEmployee(employeeId?: number) {
+  modifyEmployee(employee?: any) {
     const modalRef = this.modalService.open(ModifyEmployeeComponent, {
       size: 'lg',
       backdrop: 'static',
       keyboard: false,
     });
-    modalRef.componentInstance.employeeId = employeeId;
+    modalRef.componentInstance.employee = employee;
     modalRef.closed.subscribe(res => {
       if(res) {
         Swal.fire({
@@ -64,7 +64,7 @@ export class EmployeeComponent {
           text: 'Empleado registrado',
           icon: 'success',
           // confirmButtonText: 'Cool'
-        })
+        });
         this.loadEmployees();
       }
     })

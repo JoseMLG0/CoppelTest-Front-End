@@ -9,6 +9,8 @@ import {
   NgbDateStruct,
 } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
+import * as moment from 'moment';
+import { PayrollBusiness } from '@domain/services/payroll.business';
 
 @Component({
   selector: 'app-modify-payroll',
@@ -21,6 +23,14 @@ export class ModifyPayrollComponent implements OnInit, AfterViewInit {
   public date: { year: number; month: number } | undefined;
 
   public payrollForm: FormGroup;
+  public payrollResume = {
+    base: 0,
+    bono: 0,
+    isr: 0,
+    vales: 0,
+    subtotal: 0,
+    total: 0
+  };
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -32,7 +42,7 @@ export class ModifyPayrollComponent implements OnInit, AfterViewInit {
       name: [null, Validators.required],
       number: [null, Validators.required],
       rol: [null, Validators.required],
-      date: [null, Validators.required],
+      date: [moment(new Date()).format('yyyy-MM'), Validators.required],
       deliveriesMade: [null, Validators.required],
       employee: [null, Validators.required],
     });
@@ -44,15 +54,28 @@ export class ModifyPayrollComponent implements OnInit, AfterViewInit {
       number: this.employeeInfo.number,
       rol: this.employeeInfo.rol,
     });
+
+    this.payrollForm.get('deliveriesMade')?.valueChanges.subscribe(m => {
+      const result =PayrollBusiness.calculateMonthlySalary(this.employeeInfo, m);
+      this.payrollResume.base = result[0];
+      this.payrollResume.bono = result[1];
+      this.payrollResume.subtotal = result[2];
+      this.payrollResume.isr = result[3];
+      this.payrollResume.vales = result[4];
+      this.payrollResume.total = result[5];
+    });
   }
 
   ngAfterViewInit(): void {}
 
   confirmUpload() {
     const dataValues = this.payrollForm.getRawValue();
+    const getDateFormat = dataValues.date.split('-');
+    const localDate = new Date(Number(getDateFormat[0]), Number(getDateFormat[1]), 0);
+
     const payroll = new PayrollModel(
       dataValues.id,
-      dataValues.date,
+      localDate,
       dataValues.deliveriesMade,
       0,
       0,

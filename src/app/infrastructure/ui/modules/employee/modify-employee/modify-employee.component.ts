@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import {
   FormControl,
   FormBuilder,
@@ -17,8 +17,8 @@ import Swal from 'sweetalert2';
   templateUrl: './modify-employee.component.html',
   styleUrls: ['./modify-employee.component.scss'],
 })
-export class ModifyEmployeeComponent {
-  @Input() employeeId: string | null = null;
+export class ModifyEmployeeComponent implements OnInit, AfterViewInit {
+  @Input() employee: any = null;
 
   public employeeForm: FormGroup;
 
@@ -35,23 +35,78 @@ export class ModifyEmployeeComponent {
     });
   }
 
-  confirmUpload() {
-    const dataValues = this.employeeForm.getRawValue();
-    const employee = new EmployeeModel(dataValues.id, dataValues.number, dataValues.name, dataValues.rol, 0, true, new Date());
-    try {
-      this.employeeImplementationService.save(employee).subscribe(res => {
-        console.log(res)
-        this.activeModal.close(true);
-      }, err => {
-        Swal.fire({
-          title: 'Error!',
-          text: 'No se pudo guardar la información!',
-          icon: 'error',
-          // confirmButtonText: 'Cool'
-        })
+  ngOnInit(): void {
+    if (!!this.employee) {
+      this.employeeForm.patchValue({
+        id: this.employee.id,
+        name: this.employee.name,
+        number: this.employee.number,
+        rol: this.employee.rol,
       });
-    } catch (error) {
-      console.log(error)
+    }
+  }
+
+  ngAfterViewInit(): void {}
+
+  confirmUpload() {
+    if (this.employeeForm.invalid) {
+      Swal.fire({
+        title: 'Advertencia!',
+        text: 'Verifique que la informacion introducida es correcta',
+        icon: 'warning',
+      });
+      return;
+    }
+    const dataValues = this.employeeForm.getRawValue();
+    const employee = new EmployeeModel(
+      dataValues.id,
+      dataValues.number,
+      dataValues.name,
+      dataValues.rol,
+      this.employee?.baseSalary,
+      true,
+      this.employee?.creationDate
+    );
+    if (!!this.employee) {
+      try {
+        this.employeeImplementationService
+          .update(employee.id, employee)
+          .subscribe(
+            (res) => {
+              console.log(res);
+              this.activeModal.close(true);
+            },
+            (err) => {
+              Swal.fire({
+                title: 'Error!',
+                text: 'No se pudo guardar la información, verifique el el ID introducido sea el correcto o no este en uso',
+                icon: 'error',
+                // confirmButtonText: 'Cool'
+              });
+            }
+          );
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        this.employeeImplementationService.save(employee).subscribe(
+          (res) => {
+            console.log(res);
+            this.activeModal.close(true);
+          },
+          (err) => {
+            Swal.fire({
+              title: 'Error!',
+              text: 'No se pudo guardar la información, verifique el el ID introducido sea el correcto o no este en uso',
+              icon: 'error',
+              // confirmButtonText: 'Cool'
+            });
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 }

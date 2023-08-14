@@ -43,28 +43,28 @@
                 <div class="summary-title">Resumen de Nómina</div>
                 <div class="summary-item">
                     <span class="summary-label">Salario Base:</span>
-                    <span class="summary-value">$2400</span>
+                    <span class="summary-value">{{payrollResume.base | currency : 'MXN' : 'symbol' : '1.2-2'}}</span>
                 </div>
                 <div class="summary-item">
                     <span class="summary-label">Entregas:</span>
-                    <span class="summary-value">$100</span>
+                    <span class="summary-value">{{this.payrollForm.get('deliveriesMade')?.value || 0}}</span>
                 </div>
                 <div class="summary-item">
                     <span class="summary-label">Bonos:</span>
-                    <span class="summary-value">$100</span>
+                    <span class="summary-value">{{payrollResume.bono | currency : 'MXN' : 'symbol' : '1.2-2'}}</span>
                 </div>
                 <div class="summary-item">
                     <span class="summary-label">Subtotal:</span>
-                    <span class="summary-value">$100</span>
+                    <span class="summary-value">{{payrollResume.subtotal | currency : 'MXN' : 'symbol' : '1.2-2'}}</span>
                 </div>
                 <div class="summary-item">
-                    <span class="summary-label">Retencion ISR:</span>
-                    <span class="summary-value">$100</span>
+                    <span class="summary-label">Retención ISR:</span>
+                    <span class="summary-value">{{payrollResume.isr | currency : 'MXN' : 'symbol' : '1.2-2'}}</span>
                 </div>
                 <hr>
                 <div class="summary-item">
                     <span class="summary-label">Total:</span>
-                    <span class="summary-value">$2500</span>
+                    <span class="summary-value">{{payrollResume.total | currency : 'MXN' : 'symbol' : '1.2-2'}}</span>
                 </div>
             </div>
         </div>

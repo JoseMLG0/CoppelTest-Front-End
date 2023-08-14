@@ -8,7 +8,7 @@
     <div class="row mb-3">
       <label for="numedoInput" class="col-sm-2 col-form-label">Numero</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="numedoInput" formControlName="number">
+        <input type="text" class="form-control" id="numedoInput" formControlName="number" [readOnly]="!!this.employee">
       </div>
     </div>
     <div class="row mb-3">
