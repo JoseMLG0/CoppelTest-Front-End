@@ -1,7 +1,7 @@
-import { CreatePayrollUseCase } from '@application/use-case/payroll/createEmployee.useCase';
-import { DeletePayrollUseCase } from '@application/use-case/payroll/deleteEmployee.useCase';
-import { RetrievePayrollUseCase } from '@application/use-case/payroll/retrieveEmployee.useCase';
-import { UpdatePayrollUseCase } from '@application/use-case/payroll/updateEmployee.useCase';
+import { CreatePayrollUseCase } from '@application/use-case/payroll/createPayroll.useCase';
+import { DeletePayrollUseCase } from '@application/use-case/payroll/deletePayroll.useCase';
+import { RetrievePayrollUseCase } from '@application/use-case/payroll/retrievePayroll.useCase';
+import { UpdatePayrollUseCase } from '@application/use-case/payroll/updatePayroll.useCase';
 import { EmployeeModel } from '@domain/models/employee/employee.model';
 import { PayrollModel } from '@domain/models/payroll/payroll.model';
 import { CreatePayroll } from '@domain/ports/in/payroll/createPayroll.interface';

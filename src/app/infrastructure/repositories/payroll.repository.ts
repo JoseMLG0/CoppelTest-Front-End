@@ -1,10 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { PayrollService } from "@application/services/payroll.service";
-import { CreatePayrollUseCase } from "@application/use-case/payroll/createEmployee.useCase";
-import { DeletePayrollUseCase } from "@application/use-case/payroll/deleteEmployee.useCase";
-import { RetrievePayrollUseCase } from "@application/use-case/payroll/retrieveEmployee.useCase";
-import { UpdatePayrollUseCase } from "@application/use-case/payroll/updateEmployee.useCase";
+import { CreatePayrollUseCase } from "@application/use-case/payroll/createPayroll.useCase";
+import { DeletePayrollUseCase } from "@application/use-case/payroll/deletePayroll.useCase";
+import { RetrievePayrollUseCase } from "@application/use-case/payroll/retrievePayroll.useCase";
+import { UpdatePayrollUseCase } from "@application/use-case/payroll/updatePayroll.useCase";
 import { PayrollModel } from "@domain/models/payroll/payroll.model";
 import { PayrollRepositoryPort } from "@domain/ports/out/payrollRepositoryPort.interface";
 import { PayrollAdapter } from "@infrastructure/adapter/payroll.adapter";
