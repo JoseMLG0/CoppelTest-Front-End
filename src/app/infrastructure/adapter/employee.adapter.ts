@@ -3,10 +3,11 @@ import { EmployeeModel } from '@domain/models/employee/employee.model';
 import { EmployeeRepositoryPort } from '@domain/ports/out/employeeRepositoryPort.interface';
 import { EmployeeDTO } from '@infrastructure/dto/employee.dto';
 import { EmployeeMapper } from '@infrastructure/mappers/employee.mapper';
+import { environment } from 'environments/environment';
 import { Observable, map } from 'rxjs';
 
 export class EmployeeAdapter implements EmployeeRepositoryPort {
-  private apiUrl = 'http://localhost:8080/employees';
+  private apiUrl = `${environment.PROTOCOL}://${environment.HOST}:${environment.PORT}/employees`;
 
   constructor(private http: HttpClient) {}
 

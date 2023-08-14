@@ -33,6 +33,7 @@ export class PayrollInformationComponent implements OnInit, AfterViewInit {
     'id',
     'date',
     'baseSalary',
+    'deliveriesMade',
     'bonus',
     'isrWithholding',
     'pantryVoucher',

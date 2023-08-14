@@ -7,10 +7,11 @@ import { EmployeeDTO } from '@infrastructure/dto/employee.dto';
 import { PayrollDTO } from '@infrastructure/dto/payroll.dto';
 import { EmployeeMapper } from '@infrastructure/mappers/employee.mapper';
 import { PayrollMapper } from '@infrastructure/mappers/payroll.mapper';
+import { environment } from 'environments/environment';
 import { Observable, map } from 'rxjs';
 
 export class PayrollAdapter implements PayrollRepositoryPort {
-  private apiUrl = 'http://localhost:8080/employees';
+  private apiUrl = `${environment.PROTOCOL}://${environment.HOST}:${environment.PORT}/employees`;
   private apiUrl2 = 'payroll';
 
   constructor(private http: HttpClient) {}
