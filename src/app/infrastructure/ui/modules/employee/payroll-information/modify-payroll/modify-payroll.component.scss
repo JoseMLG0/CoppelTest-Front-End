@@ -1,0 +1,22 @@
+
+.summary {
+    border: 1px dashed #ccc; /* Borde punteado */
+    padding: 20px;
+    font-family: 'Arial Narrow', sans-serif;
+    font-size: 14px;
+}
+.summary-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 2px;
+    text-align: center;
+}
+.summary-item {
+    margin-bottom: 5px;
+}
+.summary-label {
+    font-weight: bold;
+}
+.summary-value {
+    float: right;
+}

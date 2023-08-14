@@ -1,0 +1,77 @@
+
+<div class="modal-header">
+    <h4 class="modal-title">Datos del empleado</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="payrollForm">
+      <div class="row mb-3">
+        <label for="numedoInput" class="col-sm-2 col-form-label">Numero</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="numedoInput" formControlName="number" readonly>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="nombreInput" class="col-sm-2 col-form-label">Nombre</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="nombreInput" formControlName="name" readonly>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <div class="row mb-3">
+              <label for="rolInput" class="col-sm-2 col-form-label">Rol</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="rolInput" formControlName="rol" readonly>
+              </div>
+            </div>
+          <div class="row mb-3">
+            <label for="mesInput" class="col-sm-2 col-form-label">Periodo</label>
+            <div class="col-sm-10">
+              <input type="month" class="form-control" id="mesInput" formControlName="date">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="entregasInput" class="col-sm-2 col-form-label">Entregas</label>
+            <div class="col-sm-10">
+              <input type="number" min="0" class="form-control" id="entregasInput" formControlName="deliveriesMade">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="summary">
+                <div class="summary-title">Resumen de Nómina</div>
+                <div class="summary-item">
+                    <span class="summary-label">Salario Base:</span>
+                    <span class="summary-value">$2400</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Entregas:</span>
+                    <span class="summary-value">$100</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Bonos:</span>
+                    <span class="summary-value">$100</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Subtotal:</span>
+                    <span class="summary-value">$100</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Retencion ISR:</span>
+                    <span class="summary-value">$100</span>
+                </div>
+                <hr>
+                <div class="summary-item">
+                    <span class="summary-label">Total:</span>
+                    <span class="summary-value">$2500</span>
+                </div>
+            </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="confirmUpload()">Guardar</button>
+    <button type="button" class="btn btn-danger" (click)="activeModal.close(false)">Cancelar</button>
+  </div>

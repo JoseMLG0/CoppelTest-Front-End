@@ -1,0 +1,48 @@
+
+<div class="modal-header">
+  <h4 class="modal-title">Datos del empleado</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form  [formGroup]="employeeForm">
+    <div class="row mb-3">
+      <label for="numedoInput" class="col-sm-2 col-form-label">Numero</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="numedoInput" formControlName="number">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="nombreInput" class="col-sm-2 col-form-label">Nombre</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="nombreInput" formControlName="name">
+      </div>
+    </div>
+    <fieldset class="row mb-3">
+      <legend class="col-form-label col-sm-2 pt-0">Rol</legend>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" id="gridRadios1" type="radio" formControlName="rol" value="Chofer" checked>
+          <label class="form-check-label" for="gridRadios1">
+            Chofer
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="gridRadios2" type="radio" formControlName="rol" value="Cargador">
+          <label class="form-check-label" for="gridRadios2">
+            Cargador
+          </label>
+        </div>
+        <div class="form-check disabled">
+          <input class="form-check-input" id="gridRadios3" type="radio" formControlName="rol" value="Auxiliar">
+          <label class="form-check-label" for="gridRadios3">
+            Auxiliar
+          </label>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="confirmUpload()">Guardar</button>
+  <button type="button" class="btn btn-danger" (click)="activeModal.close(false)">Cancelar</button>
+</div>
