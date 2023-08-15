@@ -17,7 +17,7 @@ export class PayrollService implements CreatePayroll, UpdatePayroll, DeletePayro
     private deletePayrollUseCase: DeletePayrollUseCase,
     private retrievePayrollUseCase: RetrievePayrollUseCase
   ) {}
-
+  
   public createPayroll(
     payroll: PayrollModel,
     employeeId: number
@@ -45,4 +45,9 @@ export class PayrollService implements CreatePayroll, UpdatePayroll, DeletePayro
   ): Observable<PayrollModel[]> {
     return this.retrievePayrollUseCase.getAllPayrollFromEmployee(employeeId);
   }
+
+  public getall(): Observable<PayrollModel[]> {
+    return this.retrievePayrollUseCase.getall();
+  }
+
 }

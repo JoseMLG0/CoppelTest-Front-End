@@ -9,6 +9,9 @@ export class RetrievePayrollUseCase implements RetrievePayroll{
 
     constructor(private payrollRepositoryPort: PayrollRepositoryPort){
     }
+    getall(): Observable<PayrollModel[]> {
+        return this.payrollRepositoryPort.findAll();
+    }
 
     public getPayroll(payrollId: number, employeeId: number): Observable<PayrollModel>{
         return this.payrollRepositoryPort.findById(payrollId, employeeId);

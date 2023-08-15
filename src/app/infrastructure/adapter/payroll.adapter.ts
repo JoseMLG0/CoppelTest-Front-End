@@ -16,6 +16,13 @@ export class PayrollAdapter implements PayrollRepositoryPort {
 
   constructor(private http: HttpClient) {}
 
+  findAll(): Observable<PayrollModel[]> {
+    const urlAllPayrolls = `${environment.PROTOCOL}://${environment.HOST}:${environment.PORT}/payroll`;
+    return this.http
+      .get<PayrollDTO[]>(urlAllPayrolls)
+      .pipe(map((payroll) => payroll.map(PayrollMapper.toDomain)));
+  }
+
 
   save(payroll: PayrollModel, employeeId: number): Observable<PayrollModel> {
     const url = `${this.apiUrl}/${employeeId}/${this.apiUrl2}`;

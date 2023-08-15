@@ -15,6 +15,7 @@ import { CreateEmployeeUseCase } from '@application/use-case/employee/createEmpl
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EmployeeImplementationService } from '@infrastructure/repositories/employee.repository';
 import { PayrollImplementationService } from '@infrastructure/repositories/payroll.repository';
+import { PayrollModule } from '@infrastructure/ui/modules/payroll/payroll.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { PayrollImplementationService } from '@infrastructure/repositories/payro
     HttpClientModule,
     BrowserAnimationsModule,
     EmployeeModule,
+    PayrollModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,

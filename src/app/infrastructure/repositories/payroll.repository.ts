@@ -37,6 +37,10 @@ export class PayrollImplementationService implements PayrollRepositoryPort {
       retrieveE
     );
   }
+  
+  findAll(): Observable<PayrollModel[]> {
+    return this.payrollService.getall();
+  }
 
   save(payroll: PayrollModel, employeeId: number): Observable<PayrollModel> {
     return this.payrollService.createPayroll(payroll, employeeId);

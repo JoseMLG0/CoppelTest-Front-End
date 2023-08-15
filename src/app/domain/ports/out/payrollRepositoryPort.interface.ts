@@ -8,4 +8,5 @@ export interface PayrollRepositoryPort {
   findAllByEmployeeId(employeeId: number): Observable<PayrollModel[]>;
   update(id: number, payroll: PayrollModel, employeeId: number): Observable<PayrollModel>;
   deleteById(id: number, employeeId: number): Observable<boolean>;
+  findAll(): Observable<PayrollModel[]>;
 }
